@@ -12,11 +12,16 @@ escola = {
 df = p.DataFrame(escola)
 amostra = df[df['Modalidade'] == 'Presencial']
 
-mod_df = df[df['Modalidade'] == 'Presencial'].count() 
-mod_df2 = df[df['Modalidade'] == 'Remoto'].count()
-mod_am = amostra[amostra['Modalidade'] == 'Presencial'].count()
-mod_am2 = amostra[amostra['Modalidade'] == 'Remoto'].count()
+pop_al = df['Aluno'].count()
+am_al = amostra['Aluno'].count()
 
+pop_p = (df['Modalidade'] == 'Presencial').sum()
+pop_r = (df['Modalidade'] == 'Remoto').sum()
+am_p = (amostra['Modalidade'] == 'Presencial').sum()
+am_r = (amostra['Modalidade'] == 'Remoto').sum()
 
-print(f"População: P = {mod_df}, R = {mod_df2}")
-print(f"Amostra: P = {mod_am}, R = {mod_am2}")
+print(f'Quantidade de alunos (população): {pop_al}')
+print(f'Composição por modalidade de alunos (população): Presencial {pop_p}, Remoto {pop_r}')
+print(f'Quantidade de alunos (amostra): {am_al}')
+print(f'Composição por modalidade de alunos (população): Presencial {am_p}, Remoto {am_r}')
+print('Essa amostra não representa a população, ela possui um viés baseado na modalidade do curso.')
