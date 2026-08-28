@@ -1,18 +1,17 @@
 import pandas as p
 import matplotlib.pyplot as mpl
 
-lan = ['Java'] * 2 + ['Python'] * 8 + ['JavaScript'] * 9 + ['C'] * 4 + ['C++'] * 2 + ['PHP'] * 3 + ['Assembly'] * 2
+lan = ['Java', 'Python', 'JavaScript', 'C', 'C++', 'PHP', 'Assembly', 'Java', 'Python', 'JavaScript', 'C', 'Java', 'PHP', 'Python', 'Python', 'Python', 'C', 'C', 'C++', 'Javascript']
 
 serie = p.Series(lan)
 
-frequencia = serie.value_counts()
-frequencia_relativa = frequencia / len(lan)
-frequencia_acumulada = serie.cumsum()
+frequencia = serie.value_counts().sort_index()
+frequencia_relativa = frequencia / int(len(lan))
+frequencia_acumulada = frequencia.cumsum()
 
-freq = ({
-    'Frequencia': frequencia,
-    'Frequencia Relativa': frequencia_relativa,
-    'Frequencia Acumulada': frequencia_acumulada
-})
+mpl.bar(serie.iloc[0:29].unique(), frequencia_relativa * 100, color='#449933')
 
-df = p.DataFrame(freq)
+print(frequencia)
+print(frequencia_relativa)
+print(frequencia_relativa.idxmax())
+mpl.show()

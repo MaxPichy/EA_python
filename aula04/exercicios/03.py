@@ -11,3 +11,17 @@ users = {
 }
 
 df = p.DataFrame(users)
+serie = p.Series(df['SO'])
+frequencia = serie.value_counts().sort_index()
+frequencia_relativa = (frequencia / int(len(df['SO'])))
+frequencia_acumulada = frequencia.cumsum()
+
+print(frequencia)
+print(frequencia_relativa * 100)
+print(frequencia_relativa.idxmax())
+
+# frequencia.plot(kind = 'bar')
+
+frequencia.plot(kind = 'pie', autopct='%1.1f%%')
+
+mpl.show()
